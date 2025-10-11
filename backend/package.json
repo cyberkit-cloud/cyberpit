@@ -1,0 +1,20 @@
+{
+  "name": "cyberpit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "functions-framework --target=cyberpit --source=src/index.ts --port=8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.1",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^4.0.0",
+    "colors": "^1.4.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0"
+  }
+}
