@@ -1,0 +1,13 @@
+services:
+  cyberpit:
+    image: cyberkit/cyberpit:latest
+    ports:
+      - "14111:8080"
+      - "14090:9090"
+    restart: always
+    environment:
+      - CONFIGURATION
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"

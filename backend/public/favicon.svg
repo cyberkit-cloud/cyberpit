@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Pit circle background -->
+  <circle cx="50" cy="50" r="45" fill="#0f172a" stroke="url(#gradient)" stroke-width="3"/>
+  
+  <!-- Cyber circuit lines -->
+  <path d="M 25 30 L 40 30 L 45 35 L 55 35 L 60 30 L 75 30" 
+        stroke="#60a5fa" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="40" cy="30" r="3" fill="#60a5fa"/>
+  <circle cx="60" cy="30" r="3" fill="#60a5fa"/>
+  
+  <!-- Flame/Pit icon -->
+  <path d="M 50 25 C 45 32 42 38 42 45 C 42 52 45 58 50 58 C 55 58 58 52 58 45 C 58 38 55 32 50 25 Z" 
+        fill="url(#gradient)" opacity="0.9"/>
+  <path d="M 50 30 C 47 35 45 40 45 45 C 45 49 47 52 50 52 C 53 52 55 49 55 45 C 55 40 53 35 50 30 Z" 
+        fill="#fbbf24" opacity="0.8"/>
+  
+  <!-- Network nodes -->
+  <circle cx="30" cy="50" r="2.5" fill="#10b981"/>
+  <circle cx="70" cy="50" r="2.5" fill="#10b981"/>
+  <circle cx="50" cy="65" r="2.5" fill="#10b981"/>
+  
+  <!-- Connection lines -->
+  <line x1="30" y1="50" x2="50" y2="65" stroke="#334155" stroke-width="1.5" opacity="0.6"/>
+  <line x1="70" y1="50" x2="50" y2="65" stroke="#334155" stroke-width="1.5" opacity="0.6"/>
+  <line x1="30" y1="50" x2="50" y2="40" stroke="#334155" stroke-width="1.5" opacity="0.6"/>
+  <line x1="70" y1="50" x2="50" y2="40" stroke="#334155" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Data packets -->
+  <rect x="35" y="55" width="4" height="4" fill="#3b82f6" opacity="0.8" rx="1"/>
+  <rect x="60" y="55" width="4" height="4" fill="#3b82f6" opacity="0.8" rx="1"/>
+</svg>
