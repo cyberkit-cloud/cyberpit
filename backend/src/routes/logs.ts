@@ -165,6 +165,7 @@ export function createLogsRouter(logger: RequestLogger) {
 
   // Get current configuration
   router.get("/api/config", (req, res) => {
+    const data = getConfig();
     res.json(data);
   });
 

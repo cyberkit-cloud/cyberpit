@@ -288,17 +288,6 @@
           Auto-refresh (3s)
         </label>
         <button onclick="showConfigEditor()">⚙️ Edit Configuration</button>
-        <button onclick="downloadConfig()">💾 Download Config</button>
-        <button onclick="document.getElementById('configUpload').click()">
-          📂 Upload Config
-        </button>
-        <input
-          type="file"
-          id="configUpload"
-          accept=".json"
-          style="display: none"
-          onchange="uploadConfig(event)"
-        />
         <button onclick="downloadLogs()">💾 Download Logs</button>
         <button onclick="document.getElementById('logsUpload').click()">
           📂 Upload Logs
@@ -334,6 +323,15 @@
         </div>
         <div class="detail-section">
           <div class="detail-title">Configuration JSON</div>
+          <div
+            id="configStatus"
+            style="
+              color: #10b981;
+              margin-bottom: 10px;
+              font-size: 0.875rem;
+              display: none;
+            "
+          ></div>
           <textarea
             id="configEditor"
             style="
@@ -349,7 +347,27 @@
             "
           ></textarea>
         </div>
-        <button onclick="saveConfiguration()">💾 Save Configuration</button>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <button onclick="saveConfiguration()">💾 Save Configuration</button>
+          <button onclick="downloadConfigFromModal()">
+            💾 Download Config
+          </button>
+          <button
+            onclick="document.getElementById('configUploadModal').click()"
+          >
+            📂 Upload Config
+          </button>
+          <input
+            type="file"
+            id="configUploadModal"
+            accept=".json"
+            style="display: none"
+            onchange="uploadConfigFromModal(event)"
+          />
+          <button onclick="loadConfigIntoEditor()" style="background: #64748b">
+            🔄 Reload from Server
+          </button>
+        </div>
       </div>
     </div>
 

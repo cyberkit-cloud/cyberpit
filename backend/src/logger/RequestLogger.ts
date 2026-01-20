@@ -103,6 +103,24 @@ export class RequestLogger {
     if (request) {
       request.fanoutResults = fanoutResults;
 
+      // Calculate status based on fanout results
+      if (fanoutResults && fanoutResults.length > 0) {
+        const successCount = fanoutResults.filter(
+          (r) =>
+            r.response?.status &&
+            r.response.status >= 200 &&
+            r.response.status < 300,
+        ).length;
+
+        if (successCount === fanoutResults.length) {
+          request.status = "success";
+        } else if (successCount === 0) {
+          request.status = "error";
+        } else {
+          request.status = "warning";
+        }
+      }
+
       // Update file if persistence is enabled
       if (this.persistToFile) {
         const filename = `${id}.json`;

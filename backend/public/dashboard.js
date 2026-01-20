@@ -221,6 +221,24 @@ function toggleAutoRefresh() {
 
 async function showConfigEditor() {
     try {
+        // Show modal first
+        document.getElementById("configModal").classList.add("active");
+
+        // Load config from server
+        await loadConfigIntoEditor();
+    } catch (error) {
+        console.error("Error opening configuration editor:", error);
+        alert("Error opening configuration editor: " + error.message);
+    }
+}
+
+async function loadConfigIntoEditor() {
+    try {
+        const statusEl = document.getElementById("configStatus");
+        statusEl.textContent = "Loading configuration from server...";
+        statusEl.style.color = "#60a5fa";
+        statusEl.style.display = "block";
+
         const response = await fetch("/api/config");
         const config = await response.json();
         document.getElementById("configEditor").value = JSON.stringify(
@@ -228,10 +246,18 @@ async function showConfigEditor() {
             null,
             2,
         );
-        document.getElementById("configModal").classList.add("active");
+
+        statusEl.textContent = "✓ Configuration loaded from server";
+        statusEl.style.color = "#10b981";
+        setTimeout(() => {
+            statusEl.style.display = "none";
+        }, 2000);
     } catch (error) {
         console.error("Error loading configuration:", error);
-        alert("Error loading configuration: " + error.message);
+        const statusEl = document.getElementById("configStatus");
+        statusEl.textContent = "Error loading configuration: " + error.message;
+        statusEl.style.color = "#ef4444";
+        statusEl.style.display = "block";
     }
 }
 
@@ -241,23 +267,36 @@ function closeConfigModal() {
 
 async function saveConfiguration() {
     try {
+        const statusEl = document.getElementById("configStatus");
         const configText = document.getElementById("configEditor").value;
         const config = JSON.parse(configText);
+
+        statusEl.textContent = "Saving configuration...";
+        statusEl.style.color = "#60a5fa";
+        statusEl.style.display = "block";
+
         const response = await fetch("/api/config", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(config),
         });
         const result = await response.json();
-        alert("Configuration saved successfully!");
-        closeConfigModal();
+
+        statusEl.textContent = "✓ Configuration saved successfully!";
+        statusEl.style.color = "#10b981";
+        setTimeout(() => {
+            statusEl.style.display = "none";
+        }, 3000);
     } catch (error) {
         console.error("Error saving configuration:", error);
-        alert("Error saving configuration: " + error.message);
+        const statusEl = document.getElementById("configStatus");
+        statusEl.textContent = "Error: " + error.message;
+        statusEl.style.color = "#ef4444";
+        statusEl.style.display = "block";
     }
 }
 
-async function downloadConfig() {
+async function downloadConfigFromModal() {
     try {
         const response = await fetch("/api/config/download");
         const blob = await response.blob();
@@ -275,24 +314,47 @@ async function downloadConfig() {
     }
 }
 
-async function uploadConfig(event) {
+async function uploadConfigFromModal(event) {
     const file = event.target.files[0];
     if (!file) return;
 
     try {
+        const statusEl = document.getElementById("configStatus");
+        statusEl.textContent = "Uploading configuration...";
+        statusEl.style.color = "#60a5fa";
+        statusEl.style.display = "block";
+
         const text = await file.text();
         const config = JSON.parse(text);
+
+        // Update the editor
+        document.getElementById("configEditor").value = JSON.stringify(
+            config,
+            null,
+            2,
+        );
+
         const response = await fetch("/api/config/upload", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(config),
         });
         const result = await response.json();
-        alert("Configuration uploaded and applied successfully!");
+
+        statusEl.textContent = "✓ Configuration uploaded and loaded into editor!";
+        statusEl.style.color = "#10b981";
+        setTimeout(() => {
+            statusEl.style.display = "none";
+        }, 3000);
+
         event.target.value = ""; // Reset file input
     } catch (error) {
         console.error("Error uploading config:", error);
-        alert("Error uploading config: " + error.message);
+        const statusEl = document.getElementById("configStatus");
+        statusEl.textContent = "Error: " + error.message;
+        statusEl.style.color = "#ef4444";
+        statusEl.style.display = "block";
+        event.target.value = "";
     }
 }
 
