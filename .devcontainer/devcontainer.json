@@ -1,0 +1,33 @@
+{
+  "name": "Node.js v24 Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+  "features": {},
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+                "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "github.copilot",
+        "johnpapa.vscode-peacock",
+        "eamodio.gitlens",
+        "redhat.vscode-yaml",
+        "MarkosTh09.color-picker",
+        "meganrogge.template-string-converter",
+        "vivaxy.vscode-conventional-commits",
+        "hediet.vscode-drawio",
+        "adpyke.codesnap",
+        "mikestead.dotenv",
+        "hlambda.graphql-language-service-server-web",
+        "hashicorp.terraform",
+        "humao.rest-client",
+        "ms-azuretools.vscode-docker",
+        "streetsidesoftware.code-spell-checker",
+        "mhutchie.git-graph"
+      ]
+    }
+  },
+  "forwardPorts": [3000],
+  "remoteUser": "node"
+}
