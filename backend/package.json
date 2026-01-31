@@ -13,14 +13,14 @@
   "license": "ISC",
   "packageManager": "pnpm@10.15.1",
   "dependencies": {
-    "@google-cloud/functions-framework": "^4.0.0",
+    "@google-cloud/functions-framework": "^5.0.0",
     "colors": "^1.4.0",
-    "dotenv": "^17.2.2",
-    "express": "^5.1.0",
-    "zod": "^4.3.5"
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/express": "^5.0.3",
+    "@types/express": "^5.0.6",
     "nodemon": "^3.1.11"
   }
 }
